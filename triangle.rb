@@ -15,13 +15,22 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
-  if (a == b && b == c)
+
+  raise TriangleError if [a,b,c].inject(:+) == 0
+
+  sorted = [a,b,c].sort
+
+  raise TriangleError if !(sorted[0] + sorted[1] > sorted[2])
+
+  case [a,b,c].uniq.size
+  when 1
   	:equilateral
-  elsif ((a == b) || (b == c) || (c == a))
+  when 2
   	:isosceles
   else
   	:scalene
   end
+
 end
 
 # Error class used in part 2.  No need to change this code.
